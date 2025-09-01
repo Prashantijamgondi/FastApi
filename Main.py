@@ -49,27 +49,27 @@ def getTodoItemById(id: str):
 
 
 # Search TodoItems by title
-# @app.get('/todo/search/{title}', response_model=List[TodoItem])
-# def searchTodoItemByTitle(title: str):
-#     search_Items=[]
-#     for item in todo_db:
-#         if title.lower() in item.title.lower():
-#             search_Items.append(item)
-#     if len(search_Items)>0:
-#         return search_Items
+@app.get('/todo/search/{title}', response_model=List[TodoItem])
+def searchTodoItemByTitle(title: str):
+    search_Items=[]
+    for item in todo_db:
+        if title.lower() in item.title.lower():
+            search_Items.append(item)
+    if len(search_Items)>0:
+        return search_Items
     
-#     return {"Error": "Item Not Found Try an other Title"}
+    return {"Error": "Item Not Found Try an other Title"}
 
 
 # Delete a specific TodoItem by Id
-# @app.delete('/todo/{id}', response_model=TodoItem)
-# def DeleteTodoItemById(id: str):
-#     for index, item in enumerate(todo_db):
-#         if str(item.id)==id:
-#             todo_db.pop(index)
-#             return {"Message": "Item Deleted Successfully"}
+@app.delete('/todo/{id}', response_model=TodoItem)
+def DeleteTodoItemById(id: str):
+    for index, item in enumerate(todo_db):
+        if str(item.id)==id:
+            todo_db.pop(index)
+            return {"Message": "Item Deleted Successfully"}
     
-#     return {"Error": "Item not Found"}
+    return {"Error": "Item not Found"}
 
 
 class UpdateTodoItem(BaseModel):
